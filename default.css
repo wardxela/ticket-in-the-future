@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+:root {
+  --text-color: #000;
+  --body-color: #fff;
+  --header-color: #ccc;
+}
+
+body.dark {
+  --text-color: #fff;
+  --body-color: #141414;
+  --header-color: #1e1e1e;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +20,9 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #141414;
-  color: #fff;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  transition: color background-color 150ms;
 }
 
 header {
@@ -20,7 +33,10 @@ header {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 32px;
-  background-color: #1e1e1e;
+  background-color: var(--header-color);
+  transition: background-color 150ms;
+  user-select: none;
+  cursor: pointer;
 }
 
 main,
@@ -57,7 +73,7 @@ main > div > div {
 }
 
 main > div > div:hover img {
-  box-shadow: 0 0 32px 2px rgb(82, 82, 82);
+  box-shadow: 0 0 16px 2px rgb(49, 49, 49);
   transform: scale(1.03);
   opacity: 0.6;
 }
@@ -72,7 +88,7 @@ main > div > div > img {
 video {
   max-width: 100%;
   border-radius: 15px;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 @media (min-width: 640px) {
