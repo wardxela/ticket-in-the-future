@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --text-color: #000;
+  --body-color: #fff;
+  --header-color: #e5e5e5;
+  --theme-toggler-bg: #fff;
+  --theme-toggler-circle-bg: darkorange;
+  --theme-toggler-position: 0%;
+}
+
+body.dark {
+  --text-color: #fff;
+  --body-color: #141414;
+  --header-color: #1e1e1e;
+  --theme-toggler-bg: #090909;
+  --theme-toggler-circle-bg: #eee;
+  --theme-toggler-position: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  transition: color background-color 150ms;
+}
+
+header {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 32px;
+  background-color: var(--header-color);
+  transition: background-color 150ms;
+  padding: 0 max(calc((100vw - 1160px) / 2), 20px);
+}
+
+header > button {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  padding: 2px;
+  right: max(calc((100vw - 1160px) / 2), 20px);
+  width: 40px;
+  height: 20px;
+  background-color: var(--theme-toggler-bg);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 150ms;
+}
+
+header > button::before {
+  content: '';
+  background-color: var(--theme-toggler-circle-bg);
+  width: 18px;
+  height: 100%;
+  border-radius: 50%;
+  transition: all 150ms;
+  transform: translate(var(--theme-toggler-position));
+}
+
+header > div {
+  margin: 0 auto;
+}
+
+main,
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 20px;
+}
+
+h1,
+h2 {
+  font-size: 36px;
+  margin-bottom: 35px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+main > div {
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 1;
+  gap: 45px;
+}
+
+main > div > div {
+  cursor: pointer;
+}
+
+main > div > div:hover img {
+  transform: scale(1.03);
+  filter: brightness(0.6);
+}
+
+main > div > div > img {
+  aspect-ratio: 5/3;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  transition: 150ms all;
+}
+
+video {
+  max-width: 100%;
+  border-radius: 15px;
+  opacity: 0.8;
+}
+
+@media (min-width: 640px) {
+  h3 {
+    font-size: 30px;
+  }
+
+  h1,
+  h2 {
+    font-size: 42px;
+  }
+
+  main > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  h3 {
+    font-size: 22px;
+  }
+  main > div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
