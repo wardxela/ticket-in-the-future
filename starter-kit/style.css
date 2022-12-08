@@ -3,17 +3,18 @@
 :root {
   --text-color: #000;
   --body-color: #fff;
-  --header-color: #e5e5e5;
+  --component-bg: #f4f4f5;
   --theme-toggler-bg: #fff;
   --theme-toggler-circle-bg: darkorange;
   --theme-toggler-position: 0%;
+  --animation-time: 300ms;
 }
 
-body.dark {
+body.ДОБАВЬ_КЛАСС {
   --text-color: #fff;
-  --body-color: #141414;
-  --header-color: #1e1e1e;
-  --theme-toggler-bg: #090909;
+  --body-color: #18181b;
+  --component-bg: #27272a;
+  --theme-toggler-bg: #18181b;
   --theme-toggler-circle-bg: #eee;
   --theme-toggler-position: 100%;
 }
@@ -25,22 +26,23 @@ body.dark {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: sans-serif;
   background-color: var(--body-color);
   color: var(--text-color);
-  transition: color background-color 150ms;
+  transition: color, background-color 150ms;
 }
 
 header {
-  min-height: 90px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 32px;
-  background-color: var(--header-color);
+  font-size: 20px;
+  background-color: var(--component-bg);
   transition: background-color 150ms;
   padding: 0 max(calc((100vw - 1160px) / 2), 20px);
+  user-select: none;
 }
 
 header > button {
@@ -82,11 +84,7 @@ section {
 h1,
 h2 {
   font-size: 36px;
-  margin-bottom: 35px;
-}
-
-h3 {
-  font-size: 22px;
+  margin-bottom: 24px;
 }
 
 img {
@@ -101,36 +99,28 @@ main > div {
   gap: 45px;
 }
 
-main > div > div {
-  cursor: pointer;
-}
-
-main > div > div:hover img {
+main > div > img:hover {
   transform: scale(1.03);
   filter: brightness(0.6);
 }
 
-main > div > div > img {
+main > div > img {
+  cursor: pointer;
   aspect-ratio: 5/3;
   border-radius: 15px;
-  margin-bottom: 20px;
   transition: 150ms all;
+  user-select: none;
 }
 
 video {
   max-width: 100%;
   border-radius: 15px;
-  opacity: 0.8;
 }
 
 @media (min-width: 640px) {
-  h3 {
-    font-size: 30px;
-  }
-
   h1,
   h2 {
-    font-size: 42px;
+    font-size: 30px;
   }
 
   main > div {
@@ -145,3 +135,84 @@ video {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.game-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+}
+
+.game-modal-close {
+  position: fixed;
+  inset: 0;
+  z-index: 4200;
+}
+
+.game-modal-close-appear {
+  animation: var(--animation-time) normal 0s both 1 modal-bg-frames ease;
+}
+
+.game-modal-close-disappear {
+  animation: var(--animation-time) reverse 0s both 1 modal-bg-frames ease;
+}
+
+.game-modal-main {
+  position: relative;
+  z-index: 4201;
+  width: 65%;
+  min-height: 70%;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.game-modal-main-appear {
+  animation: var(--animation-time) normal 0s both 1 modal-main-frames ease;
+}
+
+.game-modal-main-disappear {
+  animation: var(--animation-time) reverse 0s both 1 modal-main-frames ease;
+}
+
+.game-modal-main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #0002;
+  z-index: -1;
+}
+
+.game-modal-play {
+  position: absolute;
+  bottom: 44px;
+  right: 44px;
+  border-radius: 9999px;
+  padding: 14px 40px;
+  font-size: 36px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: #fafafa;
+  mix-blend-mode: screen;
+  cursor: pointer;
+  transition: background 150ms;
+}
+
+@keyframes modal-bg-frames {
+  from {
+    background: #0000;
+  }
+  to {
+    background: #000a;
+  }
+}
+
+@keyframes modal-main-frames {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+} ;
